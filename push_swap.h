@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 20:37:19 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/01/29 19:15:13 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:03:32 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ void				rra(t_stack **astack);
 void				rrb(t_stack **bstack);
 void				rrr(t_stack **astack, t_stack **bstack);
 int					sort_router(t_stack **astack, t_stack **bstack, int argc);
-int					sort2hardcode(t_stack **astack);
-int					sort3hardcode(t_stack **astack);
-int					sort4hardcode(t_stack **astack, t_stack **bstack, int argc);
-int					sort5hardcode(t_stack **astack, t_stack **bstack, int argc);
+int					sort2hardcode(int x);
+int					sort3hardcode(int x);
+int					sort4hardcode(int x);
+int					sort5hardcode(t_stack **astack, t_stack **bstack, int x);
+int					sort6hardcode(t_stack **astack, t_stack **bstack, int x);
+int					sort7hardcode(t_stack **astack, t_stack **bstack, int x);
 int					sort_k(t_stack **astack, t_stack **bstack, int argc);
 double				ps_atod(const char *str);
 void				ps_stackadd_back(t_stack **lst, t_stack *new);

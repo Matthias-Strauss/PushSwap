@@ -6,18 +6,13 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:06:42 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/01/29 19:15:14 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:03:25 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// THREE
-// 123 132 231 213 321 312
+#include "push_swap.h"
 
-// #FOUR
-// 	1234 1243 1324 1342 1423 1432 2134 2143 2314 2341 2413 2431 3124 3142 3214
-//  3241 3412 3421 4123 4132 4213 4231 4312 4321
-
-int	sort2hardcode(char *x)
+int	sort2hardcode(int x)
 {
 	if (x == 12)
 		return (write(1, "\n", 1));
@@ -25,7 +20,7 @@ int	sort2hardcode(char *x)
 		return (write(1, "sa\n", 3));
 }
 
-int	sort3hardcode(char *x)
+int	sort3hardcode(int x)
 {
 	if (x == 123)
 		return (write(1, "\n", 1));
@@ -41,7 +36,7 @@ int	sort3hardcode(char *x)
 		return (write(1, "ra\n", 3));
 }
 
-int	sort4hardcode(char *x)
+int	sort4hardcode(int x)
 {
 	if (x == 1234)
 		return (write(1, "\n", 1));
@@ -70,7 +65,7 @@ int	sort4hardcode(char *x)
 	return (sort4hardcodecontinued(x));
 }
 
-int	sort4hardcodecontinued(char *x)
+int	sort4hardcodecontinued(int x)
 {
 	if (x == 3124)
 		return (write(1, "ra\nsa\nrra\nsa\n", 14));
@@ -95,4 +90,21 @@ int	sort4hardcodecontinued(char *x)
 	if (x == 4312)
 		return (write(1, "sa\nra\nsa\nrra\nsa\n", 18));
 	return (write(1, "sa\nra\nsa\nrra\n", 14));
+}
+
+void	sort5hardcode(t_stack **astack, t_stack **bstack, int argc)
+{
+	t_stack	*tmp;
+
+	tmp = *astack;
+	while (tmp != NULL)
+	{
+		if (tmp->order == 1)
+		{
+			pb(bstack, astack);
+			return (sort4hardcode(low_param_checksum(astack, argc - 1)),
+				write(1, "pa\n", 3));
+		}
+		tmp = tmp->next;
+	}
 }

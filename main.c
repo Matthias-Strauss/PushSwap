@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:34:43 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/01/30 12:16:26 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:03:24 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	memdbg(t_stack **astack, t_stack **bstack)
 /// @brief Takes a stack of integers and indexes them in ascending order.
 /// @param astack Stack to be sorted.
 /// @param count Amount of integers in the stack.
-void	pre_sort(t_stack **astack, int count)
+void	indexing(t_stack **astack, int count)
 {
 	t_stack	*current;
 	t_stack	*tmp;
@@ -123,29 +123,41 @@ void	pre_sort(t_stack **astack, int count)
 	}
 }
 
-int	sort_router(t_stack **astack, t_stack **bstack, int argc)
+int	low_param_checksum(t_stack **astack, int argc)
 {
-	t_stack	*tmp;
 	int		i;
+	int		x;
 	char	*initial_order;
+	t_stack	*tmp;
 
 	i = 0;
 	tmp = *astack;
-	initial_order = malloc(sizeof(char) * argc);
+	initial_order = malloc(sizeof(char) * (argc - 1));
 	while (tmp != NULL)
 	{
 		initial_order[i] = (char)tmp->order;
 		tmp = tmp->next;
 		i++;
 	}
-	if (argc > 5)
-		return (sort5hardcode(astack, bstack, argc));
-	else if (argc == 5)
-		return (sort4hardcode(initial_order));
+	x = ft_atoi(initial_order);
+	free(initial_order);
+	return (x);
+}
+
+int	sort_router(t_stack **astack, t_stack **bstack, int argc)
+{
+	int		x;
+	char	*initial_order;
+
+	x = low_param_checksum(astack, argc);
+	if (argc == 6)
+		return (sort6hardcode(astack, bstack, x));
+	if (argc == 5)
+		return (sort4hardcode(x));
 	else if (argc == 4)
-		return (sort3hardcode(initial_order));
+		return (sort3hardcode(x));
 	else if (argc == 3)
-		return (sort2hardcode(initial_order));
+		return (sort2hardcode(x));
 	else
 		return ;
 }
@@ -163,11 +175,11 @@ int	main(int argc, char *argv[])
 	bstk_head = NULL;
 	parse_args(argc, argv, &astk_head);
 	validate_params(&astk_head);
-	pre_sort(&astk_head, argc);
-	memdbg(&astk_head, &bstk_head);
-	if (argc >= 5)
+	indexing(&astk_head, argc - 1);
+	if (argc >= 7)
 		sort_k(&astk_head, &bstk_head, argc);
 	else
-		sort_router(&astk_head, &bstk_head, argc);
+		sort_router(&astk_head, &bstk_head, low_param_checksum(&astk_head,
+				argc));
 	return (0);
 }
