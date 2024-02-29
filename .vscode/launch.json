@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C Debug using LLDB",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/push_swap",
+            "args": [
+                "100",
+                "102",
+                "3",
+                "5",
+                "99",
+                "16",
+                "34",
+                "52",
+                "53",
+                "54",
+                "88"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "preLaunchTask": "make_debug"
+        }
+    ]
+}

@@ -1,5 +1,0 @@
-cat > grademe.command
-#!/bin/bash
-bash -c "$(curl https://grademe.fr)"
-^D
-chmod a+x grademe.command
