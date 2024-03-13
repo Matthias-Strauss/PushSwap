@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:55:27 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/02/24 18:19:39 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/11 19:12:12 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,27 @@ int	is_space(int c)
 int	is_char_digit_or_sign(int argc, char *argv[])
 {
 	int		i;
+	int		signs;
 	char	*tmp;
 
 	i = 1;
+	signs = 0;
 	while (i < argc)
 	{
 		tmp = argv[i];
 		while (*tmp != '\0')
 		{
-			if (!(*tmp >= '0' && *tmp <= '9') && !(*tmp == '+')
-				&& !(*tmp == '-'))
+			if (*tmp == '+' || *tmp == '-')
+				signs += 1;
+			if ((!(*tmp >= '0' && *tmp <= '9') && !(*tmp == '+')
+					&& !(*tmp == '-')) || signs >= 1)
 			{
 				write(STD_ERR, "Error\n", 6);
 				exit(1);
 			}
 			tmp++;
 		}
+		signs = 0;
 		i++;
 	}
 	return (0);

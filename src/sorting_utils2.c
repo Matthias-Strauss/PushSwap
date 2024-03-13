@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:45:11 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/02/29 14:49:27 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/10 22:06:33 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	calc_dbl_rot(t_exec *exec, t_node *node_src, t_node *node_dst)
 
 	if (node_src->c_rot_up < node_dst->c_rot_up)
 		rr = node_src->c_rot_up;
-	else /*if (node_src->c_rot_up > node_dst->c_rot_up)*/
+	else
 		rr = node_dst->c_rot_up;
 	exec->dbl_rot = rr;
 }
@@ -29,7 +29,7 @@ void	calc_rev_dbl_rot(t_exec *exec, t_node *node_src, t_node *node_dst)
 
 	if (node_src->c_rot_down < node_dst->c_rot_down)
 		rrr = node_src->c_rot_down;
-	else /*if (node_src->c_rot_down > node_dst->c_rot_down)*/
+	else
 		rrr = node_dst->c_rot_down;
 	exec->dbl_rrot = rrr;
 }

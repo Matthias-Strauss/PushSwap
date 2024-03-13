@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:29:54 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/02/23 21:09:24 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/10 22:44:10 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ void	swap(t_node **head)
 	return ;
 }
 
+/// @brief Pushes the last node from Stack SRC to DST.
+/// @param stk_src Stack to pop from.
+/// @param stk_dst Stack to push to.
+void	push_last_node(t_node **stk_src, t_node **stk_dst)
+{
+	(*stk_dst)->prev->next = *stk_src;
+	(*stk_src)->prev = (*stk_dst)->prev;
+	(*stk_dst)->prev = *stk_src;
+	(*stk_src)->next = *stk_dst;
+	(*stk_dst) = *stk_src;
+	*stk_src = NULL;
+}
+
 /// @brief Pushes from Stack SRC to stack DST.
 ///        Undefined behavior if stk_src == NULL.
 ///			undefined behavior if stk_src is only one element.
@@ -71,7 +84,9 @@ void	push(t_node **stk_src, t_node **stk_dst)
 
 	src_first = *stk_src;
 	*stk_src = (*stk_src)->next;
-	if (*stk_src)
+	if (*stk_src == src_first)
+		return (push_last_node(stk_src, stk_dst));
+	if (*stk_src && *stk_src != src_first)
 	{
 		(*stk_src)->prev = src_first->prev;
 		src_first->prev->next = *stk_src;
@@ -98,12 +113,4 @@ void	rot(t_node **head)
 {
 	if (*head != NULL)
 		*head = (*head)->next;
-}
-
-/// @brief Reverse Rotates a Stack.
-/// @param head Head Pointer of the Stack to be reverse rotated.
-void	rev_rot(t_node **head)
-{
-	if (*head != NULL)
-		*head = (*head)->prev;
 }

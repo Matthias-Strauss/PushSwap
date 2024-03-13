@@ -10,6 +10,16 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "make_bonus",
+            "type": "shell",
+            "command": "make",
+            "args": ["bonus"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }

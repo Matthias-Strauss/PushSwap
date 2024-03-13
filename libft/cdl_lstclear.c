@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 18:33:58 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/02/23 15:38:59 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:41:58 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,21 @@
 ///				to the list must be set to NULL.
 /// @param lst 	Address of a pointer to a node.
 /// @param del  Address of the function used to delete the content of the node.
-void	cdl_lstclear(t_node **starting_node, void (*del)(void *))
+void	cdl_lstclear(t_node **starting_node)
 {
 	t_node	*ptr;
 	t_node	*tmp;
+	t_node	*last_node;
 
 	ptr = *starting_node;
-	tmp = ptr;
-	while (ptr != NULL)
+	last_node = (*starting_node)->prev;
+	while (ptr != last_node)
 	{
-		ptr = ptr->next;
-		cdl_lstdelone(tmp, del);
 		tmp = ptr;
+		ptr = ptr->next;
+		free(tmp);
 	}
-	*starting_node = NULL;
+	free(ptr);
 }
 
 // Function needs to be changed for CIRCULAR LISTS,

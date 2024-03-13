@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 18:56:30 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/02/27 16:09:04 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/11 19:04:49 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_node	*cdl_lstmap(t_node *lst, void *(*f)(void *), void (*del)(void *))
 	t_node	*lstnext;
 	void	*data;
 
-	// t_node	*first_node;
 	lstnext = NULL;
 	if (lst == NULL)
 		return (NULL);
@@ -37,7 +36,7 @@ t_node	*cdl_lstmap(t_node *lst, void *(*f)(void *), void (*del)(void *))
 	if (lstnew == NULL)
 	{
 		del(data);
-		cdl_lstclear(&lstnext, del);
+		cdl_lstclear(&lstnext);
 		return (NULL);
 	}
 	lstnew->next = lstnext;
