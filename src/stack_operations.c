@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:29:54 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/15 17:10:35 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:18:33 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void	push_last_node(t_node **stk_src, t_node **stk_dst)
 	if (!*stk_dst)
 	{
 		*stk_dst = *stk_src;
-		// (*stk_dst)->next = *stk_dst;
-		// (*stk_dst)->prev = *stk_dst;
 		*stk_src = NULL;
 		return ;
 	}

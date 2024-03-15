@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:43:07 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/15 16:25:31 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:18:59 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,15 @@ int	main(int argc, char **argv)
 	char	*commands;
 	t_vars	*environment;
 
-	// char	*nl;
 	environment = malloc(sizeof(t_vars));
 	if (environment == NULL || argc < 2)
 		return (1);
 	commands = malloc(sizeof(char) * BUFFER_SIZE);
 	if (!commands)
 		return (free(environment), 1);
-	// is_char_digit_or_sign(environment, argc, argv);
 	initialize_vars(environment, argc, argv);
 	check_duplicate(&environment->a);
 	indexing(&environment->a, argc - 1);
-	// nl = get_next_line(0);
-	// while (nl != NULL)
-	// {
-	// 	nl = get_next_line(0);
-	// 	parse_instructions(commands, &environment->a, &environment->b);
-	// 	free(nl);
-	// }
 	ft_read_loop(environment, &environment->a, &environment->b);
 	if (check_is_sorted(&environment->a, argc - 1) && environment->b == NULL)
 		return (free_all(environment), ft_putstr_fd("OK\n", 1), 1);
