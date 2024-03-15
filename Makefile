@@ -6,7 +6,7 @@
 #    By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 18:17:37 by mstrauss          #+#    #+#              #
-#    Updated: 2024/03/12 18:51:47 by mstrauss         ###   ########.fr        #
+#    Updated: 2024/03/15 13:33:51 by mstrauss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ executooor_b_to_a.c\
 main.c\
 mem_man_malloc.c\
 parsing_validation.c\
+sort_big.c\
 sorting.c\
 sorting_utils.c\
 sorting_utils2.c\
@@ -91,7 +92,7 @@ valgrind:
 	mv *.o $(BUILD_DIR)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)
 
-# bonus: CFLAGS += $(DEBUG_FLAGS)
+bonus: CFLAGS += $(DEBUG_FLAGS)
 bonus: $(LIBFT) $(BONUS_OBJECTS)
 	${CC} ${CFLAGS} -o checker ${BONUS_OBJECTS} $(LIBFT)
 

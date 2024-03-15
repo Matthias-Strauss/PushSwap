@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:20:33 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/12 12:13:57 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:19:21 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,5 @@ void				ft_putstr_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putchar_fd(char c, int fd);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
+void				ft_bzero(void *s, size_t n);
 #endif

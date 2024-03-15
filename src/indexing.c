@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 12:07:52 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/11 19:04:05 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:39:15 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	indexing(t_node **head, int count)
 		count--;
 		while (1)
 		{
-			if (tmp->ind == 0 && tmp->num > highestval)
+			if (tmp->ind == -1 && tmp->num >= highestval)
 			{
 				highestval = (tmp->num);
 				highestnode = tmp;

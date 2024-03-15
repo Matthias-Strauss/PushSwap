@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:55:27 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/11 19:12:12 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:49:26 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,41 @@ int	is_space(int c)
 /// @brief Checks if all the Strings stored in argv are digits.
 /// @param argc Amount of arguments that need to be checked (-1).
 /// @param argv Array of arguments in the form of Strings.
-/// @return 0 if no illegal characters were found.
 /// 		Exit program if illegals found.
-int	is_char_digit_or_sign(int argc, char *argv[])
+void	is_char_digit_or_sign(t_vars *env, int argc, char *argv[])
 {
 	int		i;
 	int		signs;
+	int		firstc;
 	char	*tmp;
 
 	i = 1;
-	signs = 0;
 	while (i < argc)
 	{
-		tmp = argv[i];
+		signs = 0;
+		firstc = 1;
+		tmp = argv[i++];
 		while (*tmp != '\0')
 		{
-			if (*tmp == '+' || *tmp == '-')
-				signs += 1;
-			if ((!(*tmp >= '0' && *tmp <= '9') && !(*tmp == '+')
-					&& !(*tmp == '-')) || signs >= 1)
+			if ((*tmp == '+' || *tmp == '-') && firstc == 1)
 			{
-				write(STD_ERR, "Error\n", 6);
-				exit(1);
+				signs += 1;
+				tmp++;
 			}
-			tmp++;
+			else if ((*tmp == '+' || *tmp == '-') && firstc == 0)
+				error(env);
+			firstc = 0;
+			if (!(*tmp >= '0' && *tmp++ <= '9') || signs > 1)
+				error(env);
 		}
-		signs = 0;
-		i++;
 	}
-	return (0);
+}
+
+void	error(t_vars *env)
+{
+	write(STD_ERR, "Error\n", 6);
+	free_all(env);
+	exit(1);
 }
 
 /// @brief Returns TRUE if character is between 0 and 9.

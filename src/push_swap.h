@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:32:40 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/12 19:44:35 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:46:15 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void		sort2(t_node **head);
 void		sort3(t_node **head);
 void		sort4(t_vars *env);
 void		sort_big(t_vars *env);
+void		sort_loop(t_vars *env);
 
 // ############################################################	//
 //			Building Stack Operation Execution Chain			//
@@ -97,12 +98,13 @@ void		indexing(t_node **head, int count);
 // int			min_ind_stack(t_node *head);
 void		initialize_vars(t_vars *environment, int argc, char *argv[]);
 void		free_all(t_vars *env);
+void		error(t_vars *env);
 
 // ############################################################	//
 //				Parsing and Validation							//
 // ############################################################ //
 int			is_space(int c);
-int			is_char_digit_or_sign(int argc, char *argv[]);
+void		is_char_digit_or_sign(t_vars *env, int argc, char *argv[]);
 int			is_char_digit(int c);
 void		check_duplicate(t_node **head);
 

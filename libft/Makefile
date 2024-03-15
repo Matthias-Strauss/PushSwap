@@ -26,7 +26,8 @@ mem_lstdelone.c\
 ft_putstr_fd.c\
 ft_putnbr_fd.c\
 ft_putchar_fd.c\
-ft_strncmp.c
+ft_strncmp.c\
+ft_bzero.c
 
 OBJECTS = $(SRCS:.c=.o)
 OBJECTS := $(addprefix $(BUILD_DIR)/, $(OBJECTS))

@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:00:22 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/13 10:58:08 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:51:42 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@
 int	check_is_sorted(t_node **head, int arg_count)
 {
 	t_node	*cur_node;
+	t_node	*last_node;
 	int		i;
 
 	if (*head == NULL)
 		exit(write(1, "Error\n", 6));
-	cur_node = (*head)->next;
+	cur_node = *head;
+	last_node = (*head)->prev;
 	i = 1;
-	while (cur_node != *head)
+	while (cur_node != last_node)
 	{
 		if (cur_node->ind >= cur_node->next->ind)
 			return (0);

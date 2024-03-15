@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:00:31 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/02/23 21:09:31 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:31:30 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ int	atod(const char *str)
 	}
 	while (is_char_digit(str[i]))
 		sum = (str[i++] - '0') + (sum * 10);
+	sum = sum * sign;
 	if (sum > INT_MAX || sum < INT_MIN)
 	{
 		write(STD_ERR, "Error\n", 6);
 		exit(1);
 	}
-	return ((int)(sign * sum));
+	return ((int)(sum));
 }
