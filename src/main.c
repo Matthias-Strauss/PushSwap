@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:34:40 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/15 13:50:32 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:13:22 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char *argv[])
 	environment = malloc(sizeof(t_vars));
 	if (environment == NULL || argc < 2)
 		return (1);
-	is_char_digit_or_sign(environment, argc, argv);
+	is_char_digit_or_sign(environment, argc, argv, 1);
 	initialize_vars(environment, argc, argv);
 	check_duplicate(&environment->a);
 	indexing(&environment->a, argc - 1);

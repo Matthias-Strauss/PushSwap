@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:20:33 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/15 13:19:21 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 14:51:52 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,19 @@ void				ft_putnbr_fd(int n, int fd);
 void				ft_putchar_fd(char c, int fd);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 void				ft_bzero(void *s, size_t n);
+
+// #############################  GET NEXT LINE  #############################
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
+
+char				*get_next_line(int fd);
+void				*gnl_calloc(size_t count, size_t size);
+char				*gnl_strdup(char *s1);
+char				*gnl_strjoin(char *s1, char *s2);
+int					gnl_strlen(const char *s);
+int					gnl_strchr(char *s, int c);
+// void				gnl_bzero(void *s, size_t n);
+size_t				gnl_strlcpy(char *dst, char *src, size_t dstsize);
+
 #endif

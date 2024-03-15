@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:43:04 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/12 14:48:43 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:26:20 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "../libft/libft.h"
 # include "../src/push_swap.h"
 
-void	parse_instructions(char *line, t_node **stk_a, t_node **stk_b);
+void	parse_instructions(t_vars *env, char *line, t_node **stk_a,
+			t_node **stk_b);
 
 void	rrr(t_node **head_src, t_node **head_dst);
 void	rr(t_node **head_src, t_node **head_dst);

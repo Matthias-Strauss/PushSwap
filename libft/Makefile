@@ -27,7 +27,11 @@ ft_putstr_fd.c\
 ft_putnbr_fd.c\
 ft_putchar_fd.c\
 ft_strncmp.c\
-ft_bzero.c
+ft_bzero.c\
+get_next_line.c\
+get_next_line_utils.c\
+get_next_line_utils_bonus.c\
+get_next_line_bonus.c\
 
 OBJECTS = $(SRCS:.c=.o)
 OBJECTS := $(addprefix $(BUILD_DIR)/, $(OBJECTS))

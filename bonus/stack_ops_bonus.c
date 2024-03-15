@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:26:09 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/12 14:50:48 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:49:11 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,28 @@
 
 void	pa(t_node **stk_src, t_node **stk_dst)
 {
+	if (*stk_src == NULL)
+		return ;
 	push(stk_src, stk_dst);
 }
 
 void	pb(t_node **stk_src, t_node **stk_dst)
 {
+	if (*stk_src == NULL)
+		return ;
 	push(stk_src, stk_dst);
 }
 
 void	sa(t_node **head_stk)
 {
+	if (*head_stk == NULL)
+		return ;
 	swap(head_stk);
 }
 
 void	sb(t_node **head_stk)
 {
+	if (*head_stk == NULL)
+		return ;
 	swap(head_stk);
 }

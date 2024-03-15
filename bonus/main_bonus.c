@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:43:07 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/15 14:08:41 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:25:31 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,48 @@
 // ft_strncmp()
 // ft_split()
 
-void	parse_instructions(char *line, t_node **stk_a, t_node **stk_b)
+void	parse_instructions(t_vars *env, char *line, t_node **stk_a,
+		t_node **stk_b)
 {
-	if (ft_strncmp(line, "rrr", 3) == 0)
+	if (ft_strncmp(line, "rrr\n", 4) == 0)
 		rrr(stk_a, stk_b);
-	else if (ft_strncmp(line, "rra", 3) == 0)
+	else if (ft_strncmp(line, "rra\n", 4) == 0)
 		rra(stk_a);
-	else if (ft_strncmp(line, "rrb", 3) == 0)
+	else if (ft_strncmp(line, "rrb\n", 4) == 0)
 		rrb(stk_b);
-	else if (ft_strncmp(line, "rr", 2) == 0)
+	else if (ft_strncmp(line, "rr\n", 3) == 0)
 		rr(stk_a, stk_b);
-	else if (ft_strncmp(line, "ra", 2) == 0)
+	else if (ft_strncmp(line, "ra\n", 3) == 0)
 		ra(stk_a);
-	else if (ft_strncmp(line, "rb", 2) == 0)
+	else if (ft_strncmp(line, "rb\n", 3) == 0)
 		rb(stk_b);
-	else if (ft_strncmp(line, "pa", 2) == 0)
+	else if (ft_strncmp(line, "pa\n", 3) == 0)
 		pa(stk_b, stk_a);
-	else if (ft_strncmp(line, "pb", 2) == 0)
+	else if (ft_strncmp(line, "pb\n", 3) == 0)
 		pb(stk_a, stk_b);
-	else if (ft_strncmp(line, "ss", 2) == 0)
+	else if (ft_strncmp(line, "ss\n", 3) == 0)
 		ss(stk_a, stk_b);
-	else if (ft_strncmp(line, "sa", 2) == 0)
+	else if (ft_strncmp(line, "sa\n", 3) == 0)
 		sa(stk_a);
-	else if (ft_strncmp(line, "sb", 2) == 0)
+	else if (ft_strncmp(line, "sb\n", 3) == 0)
 		sb(stk_b);
+	else
+		error(env);
 	ft_bzero(line, 6);
+}
+
+void	ft_read_loop(t_vars *env, t_node **stack_a, t_node **stack_b)
+{
+	char	*line;
+
+	while (1)
+	{
+		line = get_next_line(0);
+		if (!line)
+			break ;
+		parse_instructions(env, line, stack_a, stack_b);
+		free(line);
+	}
 }
 
 /// @brief Takes an unsorted list of integers as parameters. Then listens to
@@ -53,10 +70,10 @@ void	parse_instructions(char *line, t_node **stk_a, t_node **stk_b)
 /// 		"KO\n" on STDOUT when successfully sorted.
 int	main(int argc, char **argv)
 {
-	int		bytesread;
 	char	*commands;
 	t_vars	*environment;
 
+	// char	*nl;
 	environment = malloc(sizeof(t_vars));
 	if (environment == NULL || argc < 2)
 		return (1);
@@ -67,12 +84,14 @@ int	main(int argc, char **argv)
 	initialize_vars(environment, argc, argv);
 	check_duplicate(&environment->a);
 	indexing(&environment->a, argc - 1);
-	bytesread = 1;
-	while (bytesread > 0)
-	{
-		bytesread = read(0, commands, BUFFER_SIZE);
-		parse_instructions(commands, &environment->a, &environment->b);
-	}
+	// nl = get_next_line(0);
+	// while (nl != NULL)
+	// {
+	// 	nl = get_next_line(0);
+	// 	parse_instructions(commands, &environment->a, &environment->b);
+	// 	free(nl);
+	// }
+	ft_read_loop(environment, &environment->a, &environment->b);
 	if (check_is_sorted(&environment->a, argc - 1) && environment->b == NULL)
 		return (free_all(environment), ft_putstr_fd("OK\n", 1), 1);
 	else

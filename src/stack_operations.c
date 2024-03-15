@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:29:54 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/10 22:44:10 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:10:35 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,14 @@ void	swap(t_node **head)
 /// @param stk_dst Stack to push to.
 void	push_last_node(t_node **stk_src, t_node **stk_dst)
 {
+	if (!*stk_dst)
+	{
+		*stk_dst = *stk_src;
+		// (*stk_dst)->next = *stk_dst;
+		// (*stk_dst)->prev = *stk_dst;
+		*stk_src = NULL;
+		return ;
+	}
 	(*stk_dst)->prev->next = *stk_src;
 	(*stk_src)->prev = (*stk_dst)->prev;
 	(*stk_dst)->prev = *stk_src;

@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:55:27 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/15 13:49:26 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:13:02 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ int	is_space(int c)
 /// @param argc Amount of arguments that need to be checked (-1).
 /// @param argv Array of arguments in the form of Strings.
 /// 		Exit program if illegals found.
-void	is_char_digit_or_sign(t_vars *env, int argc, char *argv[])
+void	is_char_digit_or_sign(t_vars *env, int argc, char *argv[], int i)
 {
-	int		i;
 	int		signs;
 	int		firstc;
 	char	*tmp;
 
-	i = 1;
 	while (i < argc)
 	{
 		signs = 0;
 		firstc = 1;
 		tmp = argv[i++];
+		if (*tmp == '\0')
+			error(env);
 		while (*tmp != '\0')
 		{
 			if ((*tmp == '+' || *tmp == '-') && firstc == 1)
@@ -47,7 +47,7 @@ void	is_char_digit_or_sign(t_vars *env, int argc, char *argv[])
 				signs += 1;
 				tmp++;
 			}
-			else if ((*tmp == '+' || *tmp == '-') && firstc == 0)
+			else if (((*tmp == '+' || *tmp == '-') && firstc == 0))
 				error(env);
 			firstc = 0;
 			if (!(*tmp >= '0' && *tmp++ <= '9') || signs > 1)
@@ -82,6 +82,8 @@ void	check_duplicate(t_node **head)
 	t_node	*current;
 	t_node	*rest;
 
+	if (*head == (*head)->next)
+		return ;
 	current = *head;
 	while (current != NULL)
 	{

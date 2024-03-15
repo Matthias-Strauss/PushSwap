@@ -6,7 +6,7 @@
 /*   By: mstrauss <mstrauss@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:21:16 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/03/15 13:49:18 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:10:09 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	initialize_vars(t_vars *environment, int argc, char *argv[])
 	environment->argc = argc;
 	environment->a = NULL;
 	environment->b = NULL;
-	is_char_digit_or_sign(environment, argc, argv);
+	is_char_digit_or_sign(environment, argc, argv, 1);
 	environment->a = cdl_lstnew(atod(argv[--argc]));
 	if (!environment->a)
 		exit(1);
